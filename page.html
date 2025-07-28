@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUSRET COIN - Bae cat Salty</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Courier+Prime:wght@400;700&display=swap');
+        
+        body { 
+            font-family: 'Orbitron', monospace;
+            background: #000000;
+            overflow-x: hidden;
+        }
+        
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000000;
+        }
+        
+        .matrix-rain {
+            position: absolute;
+            color: #00ff41;
+            font-family: 'Courier Prime', monospace;
+            font-size: 14px;
+            animation: matrix-fall linear infinite;
+            opacity: 0.8;
+        }
+        
+        @keyframes matrix-fall {
+            0% { transform: translateY(-100vh); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        
+        .hero-title { 
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41, 0 0 60px #00ff41;
+        }
+        
+        .matrix-text {
+            color: #00ff41;
+            text-shadow: 0 0 10px #00ff41;
+            font-family: 'Courier Prime', monospace;
+        }
+        
+        .matrix-glow {
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3), 
+                        0 0 40px rgba(0, 255, 65, 0.2),
+                        inset 0 0 20px rgba(0, 255, 65, 0.1);
+            border: 1px solid #00ff41;
+            background: rgba(0, 255, 65, 0.05);
+        }
+        
+        .matrix-glow:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.5), 
+                        0 0 60px rgba(0, 255, 65, 0.3),
+                        inset 0 0 30px rgba(0, 255, 65, 0.2);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+        
+        .matrix-button {
+            background: linear-gradient(45deg, #001100, #003300);
+            border: 2px solid #00ff41;
+            color: #00ff41;
+            text-shadow: 0 0 10px #00ff41;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .matrix-button:hover {
+            background: linear-gradient(45deg, #003300, #005500);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .glitch {
+            position: relative;
+            animation: glitch 2s infinite;
+        }
+        
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+        
+        .typing-effect {
+            border-right: 2px solid #00ff41;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: #00ff41; }
+            51%, 100% { border-color: transparent; }
+        }
+        
+        .matrix-card {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05) 0%, rgba(0, 0, 0, 0.8) 100%);
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .salt-particle {
+            position: absolute;
+            color: #00ff41;
+            animation: digital-float 4s ease-in-out infinite;
+            pointer-events: none;
+            font-family: 'Courier Prime', monospace;
+        }
+        
+        @keyframes digital-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-30px) rotate(180deg); opacity: 1; }
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #001100, #00ff41);
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+        
+        .matrix-timeline {
+            border-left: 2px solid #00ff41;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+        }
+        
+        .code-block {
+            background: #001100;
+            border: 1px solid #00ff41;
+            font-family: 'Courier Prime', monospace;
+            color: #00ff41;
+        }
+        
+        .salty-glow {
+            filter: drop-shadow(0 0 20px #00ff41);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 20px #00ff41); }
+            50% { filter: drop-shadow(0 0 40px #00ff41) drop-shadow(0 0 60px #00ff41); }
+        }
+    </style>
+</head>
+<body class="bg-black text-green-400">
+    <!-- Matrix Rain Background -->
+    <div class="matrix-bg" id="matrix-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full matrix-glow z-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gray-300 to-gray-500 flex items-center justify-center salty-glow border-2 border-green-400">
+                        <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none">
+                            <!-- Salty cat head -->
+                            <ellipse cx="16" cy="12" rx="8" ry="6" fill="#D2B48C" stroke="#00ff41" stroke-width="0.5"/>
+                            <!-- Cat ears -->
+                            <polygon points="10,8 12,5 14,8" fill="#D2B48C"/>
+                            <polygon points="18,8 20,5 22,8" fill="#D2B48C"/>
+                            <!-- Chef hat -->
+                            <ellipse cx="16" cy="6" rx="6" ry="3" fill="white" stroke="#00ff41" stroke-width="0.5"/>
+                            <!-- Sunglasses -->
+                            <rect x="11" y="11" width="10" height="3" fill="#000000" stroke="#00ff41" stroke-width="0.3" rx="1.5"/>
+                            <!-- Cat body -->
+                            <ellipse cx="16" cy="20" rx="6" ry="8" fill="#D2B48C" stroke="#00ff41" stroke-width="0.5"/>
+                            <!-- Chef apron -->
+                            <rect x="12" y="16" width="8" height="8" fill="white" stroke="#00ff41" stroke-width="0.3" rx="1"/>
+                            <!-- Salt shaker in hand -->
+                            <rect x="8" y="18" width="2" height="4" fill="#C0C0C0" stroke="#00ff41" stroke-width="0.3" rx="0.5"/>
+                            <!-- Salt particles -->
+                            <circle cx="26" cy="16" r="0.5" fill="#00ff41" opacity="0.8"/>
+                            <circle cx="28" cy="18" r="0.3" fill="#00ff41" opacity="0.6"/>
+                            <circle cx="24" cy="20" r="0.4" fill="#00ff41" opacity="0.7"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold matrix-text">SALTY</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="matrix-text hover:text-white transition-colors font-medium">[HOME]</a>
+                    <a href="#about" class="matrix-text hover:text-white transition-colors font-medium">[ABOUT]</a>
+                    <a href="#tokenomics" class="matrix-text hover:text-white transition-colors font-medium">[TOKENOMICS]</a>
+                    <a href="#roadmap" class="matrix-text hover:text-white transition-colors font-medium">[ROADMAP]</a>
+                    <button class="matrix-button px-6 py-2 rounded font-semibold">
+                        [ENTER_MATRIX]
+                    </button>
+                </div>
+                
+                <button id="mobile-menu" class="md:hidden matrix-text">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative pt-24">
+        <!-- Digital salt particles -->
+        <div class="salt-particle text-2xl" style="top: 20%; left: 10%; animation-delay: 0s;">🧂</div>
+        <div class="salt-particle text-xl" style="top: 30%; right: 15%; animation-delay: 2s;">🧂</div>
+        <div class="salt-particle text-lg" style="top: 60%; left: 20%; animation-delay: 4s;">🧂</div>
+        <div class="salt-particle text-2xl" style="top: 70%; right: 25%; animation-delay: 1s;">🧂</div>
+        <div class="salt-particle text-xl" style="top: 40%; left: 70%; animation-delay: 3s;">🧂</div>
+        
+        <div class="text-center px-4 z-10 max-w-6xl mx-auto">
+            <div class="mb-12">
+                <!-- Salty Character in Matrix Style -->
+                <div class="inline-block">
+                    <svg class="w-96 h-96 mx-auto salty-glow" viewBox="0 0 400 400" fill="none">
+                        <!-- Digital Grid Background -->
+                        <defs>
+                            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#00ff41" stroke-width="0.5" opacity="0.3"/>
+                            </pattern>
+                        </defs>
+                        <rect width="400" height="400" fill="url(#grid)"/>
+                        
+                        <!-- Salty Cat Character - Inspired by the image -->
+                        <!-- Cat head with realistic proportions -->
+                        <ellipse cx="170" cy="75" rx="45" ry="40" fill="#D2B48C" stroke="#00ff41" stroke-width="2"/>
+                        <ellipse cx="165" cy="70" rx="40" ry="35" fill="#F5DEB3" opacity="0.8"/>
+                        
+                        <!-- Cat ears -->
+                        <polygon points="135,45 145,25 155,45" fill="#D2B48C" stroke="#00ff41" stroke-width="1"/>
+                        <polygon points="185,45 195,25 205,45" fill="#D2B48C" stroke="#00ff41" stroke-width="1"/>
+                        <polygon points="138,42 145,30 152,42" fill="#FFB6C1"/>
+                        <polygon points="188,42 195,30 202,42" fill="#FFB6C1"/>
+                        
+                        <!-- White chef hat on cat -->
+                        <ellipse cx="170" cy="35" rx="35" ry="18" fill="white" stroke="#00ff41" stroke-width="2"/>
+                        <rect x="135" y="35" width="70" height="25" fill="white" stroke="#00ff41" stroke-width="2" rx="4"/>
+                        <ellipse cx="170" cy="32" rx="30" ry="15" fill="#f8f8f8"/>
+                        
+                        <!-- Cat sunglasses (smaller for cat face) -->
+                        <rect x="140" y="65" width="60" height="18" fill="#1a1a1a" stroke="#00ff41" stroke-width="2" rx="9"/>
+                        <circle cx="155" cy="74" r="12" fill="#000000" stroke="#00ff41" stroke-width="1"/>
+                        <circle cx="185" cy="74" r="12" fill="#000000" stroke="#00ff41" stroke-width="1"/>
+                        <rect x="167" y="71" width="16" height="3" fill="#00ff41" rx="2"/>
+                        
+                        <!-- Matrix code reflection in glasses -->
+                        <text x="155" y="77" text-anchor="middle" fill="#00ff41" font-size="6" font-family="Courier Prime">01</text>
+                        <text x="185" y="77" text-anchor="middle" fill="#00ff41" font-size="6" font-family="Courier Prime">10</text>
+                        <circle cx="150" cy="70" r="1.5" fill="#00ff41" opacity="0.3"/>
+                        <circle cx="190" cy="70" r="1.5" fill="#00ff41" opacity="0.3"/>
+                        
+                        <!-- Cat nose and mouth -->
+                        <polygon points="168,88 170,92 172,88" fill="#FF69B4"/>
+                        <path d="M 165 95 Q 170 97 175 95" stroke="#000000" stroke-width="1.5" fill="none"/>
+                        <path d="M 170 92 L 170 95" stroke="#000000" stroke-width="1" fill="none"/>
+                        
+                        <!-- Cat whiskers -->
+                        <line x1="130" y1="85" x2="145" y2="88" stroke="#000000" stroke-width="1"/>
+                        <line x1="130" y1="92" x2="145" y2="92" stroke="#000000" stroke-width="1"/>
+                        <line x1="195" y1="88" x2="210" y2="85" stroke="#000000" stroke-width="1"/>
+                        <line x1="195" y1="92" x2="210" y2="92" stroke="#000000" stroke-width="1"/>
+                        
+                        <!-- Cat body with chef uniform -->
+                        <ellipse cx="170" cy="140" rx="40" ry="50" fill="#D2B48C" stroke="#00ff41" stroke-width="2"/>
+                        <ellipse cx="165" cy="135" rx="35" ry="45" fill="#F5DEB3" opacity="0.6"/>
+                        
+                        <!-- White chef apron -->
+                        <rect x="135" y="115" width="70" height="50" fill="white" stroke="#00ff41" stroke-width="2" rx="6"/>
+                        <rect x="140" y="120" width="60" height="40" fill="#f8f8f8" rx="4"/>
+                        <text x="170" y="140" text-anchor="middle" fill="#00ff41" font-size="14" font-family="Courier Prime" font-weight="bold">SALTY</text>
+                        <circle cx="150" cy="125" r="2" fill="#00ff41"/>
+                        <circle cx="190" cy="125" r="2" fill="#00ff41"/>
+                        
+                        <!-- Cat arms/paws in iconic pose -->
+                        <!-- Left arm (holding salt shaker) -->
+                        <ellipse cx="125" cy="125" rx="10" ry="25" fill="#D2B48C" stroke="#00ff41" stroke-width="1" transform="rotate(-25 125 125)"/>
+                        <ellipse cx="122" cy="120" rx="7" ry="18" fill="#F5DEB3" opacity="0.6" transform="rotate(-25 122 120)"/>
+                        
+                        <!-- Right arm (sprinkling pose) -->
+                        <ellipse cx="215" cy="105" rx="10" ry="28" fill="#D2B48C" stroke="#00ff41" stroke-width="1" transform="rotate(50 215 105)"/>
+                        <ellipse cx="212" cy="100" rx="7" ry="20" fill="#F5DEB3" opacity="0.6" transform="rotate(50 212 100)"/>
+                        
+                        <!-- Salt shaker (more detailed) -->
+                        <rect x="108" y="135" width="12" height="20" fill="#C0C0C0" stroke="#00ff41" stroke-width="1" rx="2" transform="rotate(-15 108 135)"/>
+                        <rect x="106" y="130" width="16" height="6" fill="#00ff41" rx="3" transform="rotate(-15 106 130)"/>
+                        <text x="114" y="143" text-anchor="middle" fill="#00ff41" font-size="6" font-family="Courier Prime" font-weight="bold" transform="rotate(-15 114 143)">SALT</text>
+                        <circle cx="109" cy="132" r="1" fill="#ffffff" transform="rotate(-15 109 132)"/>
+                        <circle cx="111" cy="132" r="1" fill="#ffffff" transform="rotate(-15 111 132)"/>
+                        <circle cx="113" cy="132" r="1" fill="#ffffff" transform="rotate(-15 113 132)"/>
+                        
+                        <!-- Cat paws -->
+                        <ellipse cx="118" cy="155" rx="6" ry="5" fill="#D2B48C" stroke="#00ff41" stroke-width="1"/>
+                        <ellipse cx="230" cy="90" rx="6" ry="5" fill="#D2B48C" stroke="#00ff41" stroke-width="1"/>
+                        
+                        <!-- Cat tail (curved behind) -->
+                        <path d="M 130 180 Q 110 160 120 140 Q 130 120 140 130" stroke="#D2B48C" stroke-width="8" fill="none"/>
+                        <path d="M 130 180 Q 110 160 120 140 Q 130 120 140 130" stroke="#F5DEB3" stroke-width="5" fill="none" opacity="0.7"/>
+                        
+                        <!-- Digital salt particles falling in arc -->
+                        <circle cx="240" cy="110" r="2" fill="#00ff41" opacity="0.9">
+                            <animate attributeName="cy" values="110;200;280" dur="2s" repeatCount="indefinite"/>
+                            <animate attributeName="cx" values="240;220;200" dur="2s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.9;0.7;0.3" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="245" cy="120" r="1.5" fill="#00ff41" opacity="0.8">
+                            <animate attributeName="cy" values="120;210;290" dur="2.2s" repeatCount="indefinite"/>
+                            <animate attributeName="cx" values="245;225;205" dur="2.2s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.8;0.6;0.2" dur="2.2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="235" cy="115" r="1.8" fill="#00ff41" opacity="0.7">
+                            <animate attributeName="cy" values="115;205;285" dur="1.8s" repeatCount="indefinite"/>
+                            <animate attributeName="cx" values="235;215;195" dur="1.8s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.7;0.5;0.1" dur="1.8s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="250" cy="125" r="1.2" fill="#00ff41" opacity="0.6">
+                            <animate attributeName="cy" values="125;215;295" dur="2.5s" repeatCount="indefinite"/>
+                            <animate attributeName="cx" values="250;230;210" dur="2.5s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.6;0.4;0.1" dur="2.5s" repeatCount="indefinite"/>
+                        </circle>
+                        
+                        <!-- Single Large Serving Plate -->
+                        <ellipse cx="170" cy="285" rx="80" ry="15" fill="#001100" opacity="0.4"/>
+                        <ellipse cx="170" cy="280" rx="80" ry="15" fill="#003300" stroke="#00ff41" stroke-width="2" opacity="0.8"/>
+                        <ellipse cx="170" cy="278" rx="75" ry="12" fill="#004400" opacity="0.3"/>
+                        
+                        <!-- Realistic Fork and Knife -->
+                        <!-- Fork (left side) -->
+                        <g transform="translate(60,270)">
+                            <!-- Fork handle -->
+                            <rect x="0" y="0" width="4" height="40" fill="#C0C0C0" rx="2"/>
+                            <rect x="0.5" y="2" width="3" height="36" fill="#E8E8E8" rx="1.5"/>
+                            <!-- Fork head -->
+                            <rect x="-1" y="-12" width="2" height="15" fill="#C0C0C0" rx="1"/>
+                            <rect x="1" y="-12" width="2" height="15" fill="#C0C0C0" rx="1"/>
+                            <rect x="3" y="-12" width="2" height="15" fill="#C0C0C0" rx="1"/>
+                            <rect x="5" y="-12" width="2" height="15" fill="#C0C0C0" rx="1"/>
+                            <!-- Fork base -->
+                            <rect x="-1" y="-2" width="8" height="4" fill="#C0C0C0" rx="2"/>
+                            <!-- Shine effect -->
+                            <rect x="1" y="5" width="1" height="30" fill="#FFFFFF" opacity="0.6" rx="0.5"/>
+                        </g>
+                        
+                        <!-- Knife (right side) -->
+                        <g transform="translate(280,270)">
+                            <!-- Knife handle -->
+                            <rect x="0" y="0" width="4" height="40" fill="#8B4513" rx="2"/>
+                            <rect x="0.5" y="2" width="3" height="36" fill="#A0522D" rx="1.5"/>
+                            <!-- Knife blade -->
+                            <path d="M 0 -20 L 12 -12 L 12 -8 L 8 -4 L 0 -4 Z" fill="#C0C0C0"/>
+                            <path d="M 1 -18 L 10 -11 L 10 -9 L 7 -6 L 1 -6 Z" fill="#E8E8E8"/>
+                            <!-- Knife guard -->
+                            <rect x="-1" y="-4" width="6" height="3" fill="#C0C0C0" rx="1"/>
+                            <!-- Handle shine -->
+                            <rect x="1" y="5" width="1" height="30" fill="#D2691E" opacity="0.8" rx="0.5"/>
+                            <!-- Blade shine -->
+                            <path d="M 2 -16 L 8 -11 L 8 -10 L 2 -14 Z" fill="#FFFFFF" opacity="0.7"/>
+                        </g>
+                        
+                        <!-- All Tokens on Single Large Plate (facing screen at 18 degree angle) -->
+                        
+                        <!-- SHIBA INU - Left position on plate -->
+                        <g transform="translate(130,275)">
+                            <!-- Token tilted towards screen at 18 degrees -->
+                            <ellipse cx="0" cy="-2" rx="18" ry="11" fill="#FFA500" stroke="#00ff41" stroke-width="1" transform="rotateX(18deg)"/>
+                            <!-- SHIB logo facing screen -->
+                            <g transform="rotateX(18deg)">
+                                <ellipse cx="0" cy="-2" rx="14" ry="8" fill="#FF6B35"/>
+                                <!-- Shiba Inu dog face -->
+                                <ellipse cx="0" cy="-3" rx="11" ry="5" fill="#F4E4BC"/>
+                                <polygon points="-5,-5 -3,-7 -1,-5" fill="#F4E4BC"/>
+                                <polygon points="1,-5 3,-7 5,-5" fill="#F4E4BC"/>
+                                <circle cx="-3" cy="-4" r="0.8" fill="#000000"/>
+                                <circle cx="3" cy="-4" r="0.8" fill="#000000"/>
+                                <ellipse cx="0" cy="-2" rx="0.8" ry="0.4" fill="#000000"/>
+                                <path d="M -2 -1 Q 0 0 2 -1" stroke="#000000" stroke-width="0.4" fill="none"/>
+                            </g>
+                            <text x="0" y="12" text-anchor="middle" fill="#00ff41" font-size="5" font-family="Courier Prime">SHIB</text>
+                        </g>
+                        
+                        <!-- DOGECOIN - Center position on plate -->
+                        <g transform="translate(170,275)">
+                            <!-- Token tilted towards screen at 18 degrees -->
+                            <ellipse cx="0" cy="-3" rx="20" ry="12" fill="#C2A633" stroke="#00ff41" stroke-width="1" transform="rotateX(18deg)"/>
+                            <!-- DOGE logo facing screen -->
+                            <g transform="rotateX(18deg)">
+                                <ellipse cx="0" cy="-3" rx="16" ry="9" fill="#D4AF37"/>
+                                <!-- Doge face features -->
+                                <ellipse cx="0" cy="-4" rx="12" ry="7" fill="#F4E4BC"/>
+                                <ellipse cx="-7" cy="-6" rx="2.5" ry="1.5" fill="#F4E4BC" transform="rotate(-15 -7 -6)"/>
+                                <ellipse cx="7" cy="-6" rx="2.5" ry="1.5" fill="#F4E4BC" transform="rotate(15 7 -6)"/>
+                                <circle cx="-3.5" cy="-5" r="0.8" fill="#000000"/>
+                                <circle cx="3.5" cy="-5" r="0.8" fill="#000000"/>
+                                <ellipse cx="0" cy="-3" rx="1" ry="0.5" fill="#000000"/>
+                                <path d="M -2.5 -2 Q 0 -1 2.5 -2" stroke="#000000" stroke-width="0.6" fill="none"/>
+                            </g>
+                            <text x="0" y="15" text-anchor="middle" fill="#00ff41" font-size="5" font-family="Courier Prime">DOGE</text>
+                        </g>
+                        
+                        <!-- FLOKI - Right position on plate -->
+                        <g transform="translate(210,275)">
+                            <!-- Token tilted towards screen at 18 degrees -->
+                            <ellipse cx="0" cy="-2" rx="16" ry="10" fill="#FF6B35" stroke="#00ff41" stroke-width="1" transform="rotateX(18deg)"/>
+                            <!-- FLOKI logo facing screen -->
+                            <g transform="rotateX(18deg)">
+                                <ellipse cx="0" cy="-2" rx="12" ry="6" fill="#FFA500"/>
+                                <!-- Viking helmet -->
+                                <ellipse cx="0" cy="-4" rx="10" ry="3" fill="#8B4513"/>
+                                <ellipse cx="-5" cy="-5" rx="0.8" ry="2.5" fill="#FFD700" transform="rotate(-20 -5 -5)"/>
+                                <ellipse cx="5" cy="-5" rx="0.8" ry="2.5" fill="#FFD700" transform="rotate(20 5 -5)"/>
+                                <!-- Shiba face -->
+                                <ellipse cx="0" cy="-1" rx="7" ry="3" fill="#F4E4BC"/>
+                                <circle cx="-2" cy="-2" r="0.5" fill="#000000"/>
+                                <circle cx="2" cy="-2" r="0.5" fill="#000000"/>
+                                <ellipse cx="0" cy="-1" rx="0.6" ry="0.3" fill="#000000"/>
+                            </g>
+                            <text x="0" y="10" text-anchor="middle" fill="#00ff41" font-size="5" font-family="Courier Prime">FLOKI</text>
+                        </g>
+                        
+                        <!-- Salt particles landing on the big plate -->
+                        <circle cx="135" cy="260" r="1" fill="#00ff41" opacity="0.8">
+                            <animate attributeName="opacity" values="0;0.8;0" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="175" cy="255" r="1.5" fill="#00ff41" opacity="0.9">
+                            <animate attributeName="opacity" values="0;0.9;0" dur="2.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="205" cy="260" r="1.2" fill="#00ff41" opacity="0.7">
+                            <animate attributeName="opacity" values="0;0.7;0" dur="2.8s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="160" cy="265" r="0.8" fill="#00ff41" opacity="0.6">
+                            <animate attributeName="opacity" values="0;0.6;0" dur="3.2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="185" cy="262" r="1.1" fill="#00ff41" opacity="0.8">
+                            <animate attributeName="opacity" values="0;0.8;0" dur="2.7s" repeatCount="indefinite"/>
+                        </circle>
+                        
+                        <!-- Matrix code effect -->
+                        <text x="200" y="360" text-anchor="middle" fill="#00ff41" font-size="14" font-family="Courier Prime" opacity="0.8">
+                            &gt; SALT_PROTOCOL_ACTIVATED &lt;
+                            <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+                        </text>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="code-block rounded-lg p-4 mb-8 max-w-2xl mx-auto">
+                <div class="matrix-text text-sm mb-2">&gt; INITIALIZING SALTY PROTOCOL...</div>
+                <div class="matrix-text text-sm mb-2">&gt; LOADING MATRIX INTERFACE...</div>
+                <div class="matrix-text text-sm">&gt; WELCOME TO THE SALT REVOLUTION</div>
+            </div>
+            
+            <h1 class="hero-title text-4xl md:text-7xl font-black mb-6 leading-tight glitch">
+                SALTY COIN
+            </h1>
+            
+            <div class="matrix-text text-2xl md:text-3xl mb-8 typing-effect" id="slogan">
+                Bae cat Salty
+            </div>
+            
+            <p class="text-lg md:text-xl text-green-300 mb-12 max-w-4xl mx-auto leading-relaxed font-mono">
+                &gt; Enter the Matrix of flavor. Salty has awakened to sprinkle digital salt across the blockchain.<br>
+                &gt; The chosen one who will liberate taste from the machines.<br>
+                &gt; <span class="matrix-text font-bold">REALITY IS WHAT YOU MAKE IT. MAKE IT SALTY.</span>
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+                <button class="matrix-button px-10 py-4 rounded font-semibold text-lg">
+                    [TAKE_RED_PILL] 🧂
+                </button>
+                <button class="matrix-button px-10 py-4 rounded font-semibold text-lg">
+                    [VIEW_MATRIX] 📊
+                </button>
+            </div>
+            
+            <!-- Matrix Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div class="matrix-card rounded-lg p-6 text-center">
+                    <div class="text-2xl mb-3 matrix-text">💰</div>
+                    <div class="text-xl font-bold matrix-text mb-1">$1.2M</div>
+                    <div class="text-green-600 text-sm font-mono">[MARKET_CAP]</div>
+                </div>
+                <div class="matrix-card rounded-lg p-6 text-center">
+                    <div class="text-2xl mb-3 matrix-text">👥</div>
+                    <div class="text-xl font-bold matrix-text mb-1">15,420</div>
+                    <div class="text-green-600 text-sm font-mono">[AWAKENED_USERS]</div>
+                </div>
+                <div class="matrix-card rounded-lg p-6 text-center">
+                    <div class="text-2xl mb-3 matrix-text">📊</div>
+                    <div class="text-xl font-bold matrix-text mb-1">$450K</div>
+                    <div class="text-green-600 text-sm font-mono">[24H_VOLUME]</div>
+                </div>
+                <div class="matrix-card rounded-lg p-6 text-center">
+                    <div class="text-2xl mb-3 matrix-text">🚀</div>
+                    <div class="text-xl font-bold matrix-text mb-1">+420%</div>
+                    <div class="text-green-600 text-sm font-mono">[SALT_BOOST]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="hero-title text-3xl md:text-5xl font-black mb-6">
+                    &gt; ABOUT_SALTY.EXE
+                </h2>
+                <div class="code-block rounded-lg p-4 max-w-3xl mx-auto mb-8">
+                    <div class="matrix-text text-sm font-mono">
+                        &gt; SALTY: The chosen cat who discovered the truth about digital flavor<br>
+                        &gt; MISSION: Liberate taste from the bland matrix of ordinary tokens<br>
+                        &gt; STATUS: AWAKENED AND SPRINKLING SALT ACROSS THE BLOCKCHAIN
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="matrix-card rounded-lg p-8 text-center matrix-glow">
+                    <div class="w-16 h-16 bg-black border-2 border-green-400 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl matrix-text">⚡</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 matrix-text">[QUANTUM_SPEED]</h3>
+                    <p class="text-green-300 leading-relaxed font-mono text-sm">
+                        &gt; Transactions faster than Neo dodging bullets<br>
+                        &gt; Minimal fees, maximum flavor<br>
+                        &gt; Salt-speed processing
+                    </p>
+                </div>
+                
+                <div class="matrix-card rounded-lg p-8 text-center matrix-glow">
+                    <div class="w-16 h-16 bg-black border-2 border-green-400 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl matrix-text">🔒</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 matrix-text">[FORTRESS_PROTOCOL]</h3>
+                    <p class="text-green-300 leading-relaxed font-mono text-sm">
+                        &gt; Secured by the Matrix itself<br>
+                        &gt; Audited by digital architects<br>
+                        &gt; Unhackable salt distribution
+                    </p>
+                </div>
+                
+                <div class="matrix-card rounded-lg p-8 text-center matrix-glow">
+                    <div class="w-16 h-16 bg-black border-2 border-green-400 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl matrix-text">🌐</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 matrix-text">[GLOBAL_NETWORK]</h3>
+                    <p class="text-green-300 leading-relaxed font-mono text-sm">
+                        &gt; Awakened users worldwide<br>
+                        &gt; Connected through salt<br>
+                        &gt; One matrix, infinite flavor
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Warning Matrix Style -->
+            <div class="matrix-card rounded-lg p-8 border-2 border-red-500">
+                <div class="flex items-start space-x-4">
+                    <div class="text-4xl text-red-500">⚠️</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-red-400 mb-4 font-mono">[SYSTEM_WARNING]</h3>
+                        <div class="text-green-300 font-mono text-sm leading-relaxed">
+                            &gt; SALTY is a meme protocol for entertainment purposes<br>
+                            &gt; No connection with real Salt Bae (Nusret Gökçe)<br>
+                            &gt; Only invest what you can afford to lose in the Matrix<br>
+                            &gt; <span class="text-red-400">THIS IS NOT FINANCIAL ADVICE - JUST DIGITAL SALT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tokenomics -->
+    <section id="tokenomics" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="hero-title text-3xl md:text-5xl font-black mb-6">
+                    &gt; SALT_DISTRIBUTION.SYS
+                </h2>
+                <div class="code-block rounded-lg p-4 max-w-2xl mx-auto">
+                    <div class="matrix-text text-sm font-mono">
+                        &gt; ANALYZING SALT ALLOCATION...<br>
+                        &gt; FAIR DISTRIBUTION PROTOCOL ACTIVE
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="matrix-card rounded-lg p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-mono text-green-300">[TOTAL_SUPPLY]</span>
+                            <span class="text-xl font-bold matrix-text">1,000,000,000</span>
+                        </div>
+                        <div class="w-full bg-black rounded-full h-3 border border-green-400">
+                            <div class="progress-bar h-3 rounded-full w-full"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="matrix-card rounded-lg p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-mono text-green-300">[LIQUIDITY_POOL]</span>
+                            <span class="text-xl font-bold matrix-text">80%</span>
+                        </div>
+                        <div class="w-full bg-black rounded-full h-3 border border-green-400">
+                            <div class="progress-bar h-3 rounded-full w-4/5"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="matrix-card rounded-lg p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-mono text-green-300">[MARKETING_FUND]</span>
+                            <span class="text-xl font-bold matrix-text">15%</span>
+                        </div>
+                        <div class="w-full bg-black rounded-full h-3 border border-green-400">
+                            <div class="progress-bar h-3 rounded-full" style="width: 15%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="matrix-card rounded-lg p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-mono text-green-300">[TEAM_ALLOCATION]</span>
+                            <span class="text-xl font-bold matrix-text">5%</span>
+                        </div>
+                        <div class="w-full bg-black rounded-full h-3 border border-green-400">
+                            <div class="progress-bar h-3 rounded-full" style="width: 5%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="matrix-card rounded-lg p-12">
+                        <div class="text-6xl mb-6 salty-glow">🧂</div>
+                        <h3 class="text-2xl font-bold matrix-text mb-4">[FAIR_LAUNCH]</h3>
+                        <div class="code-block rounded p-4 mb-8">
+                            <div class="matrix-text text-sm font-mono">
+                                &gt; NO_PRESALE = TRUE<br>
+                                &gt; TEAM_TOKENS_AT_LAUNCH = FALSE<br>
+                                &gt; EQUAL_OPPORTUNITY = ACTIVATED
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-6 text-center">
+                            <div>
+                                <div class="text-3xl font-bold matrix-text">0%</div>
+                                <div class="text-green-600 text-sm font-mono">[TAX_RATE]</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold matrix-text">100%</div>
+                                <div class="text-green-600 text-sm font-mono">[COMMUNITY]</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="hero-title text-3xl md:text-5xl font-black mb-6">
+                    &gt; MISSION_ROADMAP.EXE
+                </h2>
+                <div class="code-block rounded-lg p-4 max-w-2xl mx-auto">
+                    <div class="matrix-text text-sm font-mono">
+                        &gt; SALTY'S JOURNEY TO DIGITAL ENLIGHTENMENT<br>
+                        &gt; DESTINATION: THE SALT MOON 🌙
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative">
+                <!-- Matrix Timeline -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 matrix-timeline h-full"></div>
+                
+                <div class="space-y-16">
+                    <!-- Phase 1 -->
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="matrix-card rounded-lg p-8 matrix-glow">
+                                <div class="flex items-center justify-end mb-4">
+                                    <h3 class="text-xl font-bold matrix-text mr-3">[PHASE_1: AWAKENING]</h3>
+                                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                        <span class="text-black text-sm">✓</span>
+                                    </div>
+                                </div>
+                                <div class="code-block rounded p-3">
+                                    <div class="matrix-text text-sm font-mono">
+                                        &gt; TOKEN_CREATION = COMPLETE<br>
+                                        &gt; LIQUIDITY_POOL = ACTIVE<br>
+                                        &gt; COMMUNITY_INIT = SUCCESS<br>
+                                        &gt; SOCIAL_MATRIX = ONLINE
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-16 h-16 bg-green-400 rounded-full flex items-center justify-center text-2xl font-bold text-black z-10">
+                            1
+                        </div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                    
+                    <!-- Phase 2 -->
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center text-2xl font-bold text-black z-10">
+                            2
+                        </div>
+                        <div class="w-1/2 pl-8">
+                            <div class="matrix-card rounded-lg p-8 matrix-glow">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-black text-sm">⏳</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold matrix-text">[PHASE_2: EXPANSION]</h3>
+                                </div>
+                                <div class="code-block rounded p-3">
+                                    <div class="matrix-text text-sm font-mono">
+                                        &gt; DEX_LISTINGS = PROCESSING<br>
+                                        &gt; MARKETING_PROTOCOL = ACTIVE<br>
+                                        &gt; PARTNERSHIPS = ESTABLISHING<br>
+                                        &gt; NFT_COLLECTION = DEVELOPING
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 3 -->
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="matrix-card rounded-lg p-8 matrix-glow">
+                                <div class="flex items-center justify-end mb-4">
+                                    <h3 class="text-xl font-bold matrix-text mr-3">[PHASE_3: DOMINATION]</h3>
+                                    <div class="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center">
+                                        <span class="text-white text-sm">🔮</span>
+                                    </div>
+                                </div>
+                                <div class="code-block rounded p-3">
+                                    <div class="matrix-text text-sm font-mono">
+                                        &gt; MAJOR_EXCHANGES = PENDING<br>
+                                        &gt; MOBILE_APP = DEVELOPMENT<br>
+                                        &gt; STAKING_PROTOCOL = DESIGN<br>
+                                        &gt; GLOBAL_RECOGNITION = TARGET
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-16 h-16 bg-purple-400 rounded-full flex items-center justify-center text-2xl font-bold text-black z-10">
+                            3
+                        </div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 relative">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <div class="code-block rounded-lg p-6 mb-8">
+                <div class="matrix-text text-lg font-mono">
+                    &gt; SYSTEM_MESSAGE: THE MATRIX HAS YOU...<br>
+                    &gt; BUT SALTY CAN SET YOU FREE
+                </div>
+            </div>
+            
+            <h2 class="hero-title text-3xl md:text-5xl font-black mb-6 glitch">
+                CHOOSE YOUR PILL
+            </h2>
+            <p class="text-xl text-green-300 mb-12 max-w-2xl mx-auto font-mono leading-relaxed">
+                &gt; Red pill: Join the salt revolution and taste reality<br>
+                &gt; Blue pill: Stay in the bland matrix forever<br>
+                &gt; <span class="matrix-text font-bold">THE CHOICE IS YOURS, NEO</span>
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+                <button class="matrix-button px-12 py-4 rounded font-semibold text-xl">
+                    [TAKE_RED_PILL] 🧂
+                </button>
+                <button class="matrix-button px-12 py-4 rounded font-semibold text-xl">
+                    [JOIN_RESISTANCE] 🤝
+                </button>
+            </div>
+            
+            <!-- Social Matrix -->
+            <div class="flex justify-center space-x-4">
+                <a href="#" class="matrix-card w-12 h-12 rounded flex items-center justify-center transition-all hover:scale-110">
+                    <svg class="w-6 h-6 matrix-text" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="#" class="matrix-card w-12 h-12 rounded flex items-center justify-center transition-all hover:scale-110">
+                    <svg class="w-6 h-6 matrix-text" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                    </svg>
+                </a>
+                <a href="#" class="matrix-card w-12 h-12 rounded flex items-center justify-center transition-all hover:scale-110">
+                    <svg class="w-6 h-6 matrix-text" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.347-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24c6.624 0 11.99-5.367 11.99-11.987C24.007 5.367 18.641.001 12.017.001z"/>
+                    </svg>
+                </a>
+                <a href="#" class="matrix-card w-12 h-12 rounded flex items-center justify-center transition-all hover:scale-110">
+                    <svg class="w-6 h-6 matrix-text" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-green-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gray-300 to-gray-500 flex items-center justify-center salty-glow border-2 border-green-400">
+                        <svg class="w-10 h-10" viewBox="0 0 32 32" fill="none">
+                            <!-- Salty cat head -->
+                            <ellipse cx="16" cy="12" rx="8" ry="6" fill="#D2B48C" stroke="#00ff41" stroke-width="0.5"/>
+                            <!-- Cat ears -->
+                            <polygon points="10,8 12,5 14,8" fill="#D2B48C"/>
+                            <polygon points="18,8 20,5 22,8" fill="#D2B48C"/>
+                            <!-- Chef hat -->
+                            <ellipse cx="16" cy="6" rx="6" ry="3" fill="white" stroke="#00ff41" stroke-width="0.5"/>
+                            <!-- Sunglasses -->
+                            <rect x="11" y="11" width="10" height="3" fill="#000000" stroke="#00ff41" stroke-width="0.3" rx="1.5"/>
+                            <!-- Cat body -->
+                            <ellipse cx="16" cy="20" rx="6" ry="8" fill="#D2B48C" stroke="#00ff41" stroke-width="0.5"/>
+                            <!-- Chef apron -->
+                            <rect x="12" y="16" width="8" height="8" fill="white" stroke="#00ff41" stroke-width="0.3" rx="1"/>
+                            <!-- Salt shaker in hand -->
+                            <rect x="8" y="18" width="2" height="4" fill="#C0C0C0" stroke="#00ff41" stroke-width="0.3" rx="0.5"/>
+                            <!-- Salt particles -->
+                            <circle cx="26" cy="16" r="0.5" fill="#00ff41" opacity="0.8"/>
+                            <circle cx="28" cy="18" r="0.3" fill="#00ff41" opacity="0.6"/>
+                            <circle cx="24" cy="20" r="0.4" fill="#00ff41" opacity="0.7"/>
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-bold matrix-text">SALTY PROTOCOL</span>
+                </div>
+                
+                <div class="code-block rounded-lg p-4 max-w-2xl mx-auto mb-6">
+                    <div class="matrix-text text-sm font-mono">
+                        &gt; DISCLAIMER: Meme token for entertainment purposes only<br>
+                        &gt; NO_AFFILIATION with real Salt Bae (Nusret Gökçe)<br>
+                        &gt; INVEST_RESPONSIBLY in the Matrix
+                    </div>
+                </div>
+                
+                <div class="border-t border-green-400 pt-6">
+                    <p class="text-green-600 font-mono">© 2024 SALTY PROTOCOL. ALL RIGHTS RESERVED IN THE MATRIX.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Matrix Rain Effect
+        function createMatrixRain() {
+            const matrixBg = document.getElementById('matrix-bg');
+            const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            
+            for (let i = 0; i < 50; i++) {
+                const rain = document.createElement('div');
+                rain.className = 'matrix-rain';
+                rain.style.left = Math.random() * 100 + '%';
+                rain.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                rain.style.animationDelay = Math.random() * 2 + 's';
+                rain.textContent = characters[Math.floor(Math.random() * characters.length)];
+                matrixBg.appendChild(rain);
+            }
+        }
+
+        // Initialize matrix rain
+        createMatrixRain();
+
+        // Typing effect for slogan
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    setTimeout(() => {
+                        element.textContent = '';
+                        i = 0;
+                        type();
+                    }, 3000);
+                }
+            }
+            type();
+        }
+
+        // Start typing effect
+        const sloganElement = document.getElementById('slogan');
+        typeWriter(sloganElement, 'Bae cat Salty', 150);
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            alert('[SYSTEM]: Mobile interface loading... 📱');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Button interactions
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function() {
+                const text = this.textContent.trim();
+                if (text.includes('RED_PILL') || text.includes('ENTER_MATRIX')) {
+                    alert('🧂 [SYSTEM]: Connecting to SALTY protocol... Reality loading! 🚀');
+                } else if (text.includes('VIEW_MATRIX')) {
+                    alert('📊 [SYSTEM]: Matrix data stream initializing... Charts loading! 🌙');
+                } else if (text.includes('RESISTANCE') || text.includes('JOIN')) {
+                    alert('🤝 [SYSTEM]: Resistance network connecting... Welcome to the salt revolution! 🧂');
+                }
+            });
+        });
+
+        // Social media links
+        document.querySelectorAll('a[href="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('🔗 [SYSTEM]: Social matrix links activating... Follow the white rabbit! 🧂');
+            });
+        });
+
+        // Glitch effect on hover
+        document.querySelectorAll('.glitch').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.animation = 'glitch 0.3s infinite';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.animation = 'glitch 2s infinite';
+            });
+        });
+
+        // Matrix code generation
+        function generateMatrixCode() {
+            const codeBlocks = document.querySelectorAll('.code-block');
+            const matrixChars = '01';
+            
+            setInterval(() => {
+                codeBlocks.forEach(block => {
+                    const spans = block.querySelectorAll('span');
+                    spans.forEach(span => {
+                        if (Math.random() < 0.1) {
+                            span.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                            setTimeout(() => {
+                                span.textContent = span.dataset.original || span.textContent;
+                            }, 100);
+                        }
+                    });
+                });
+            }, 2000);
+        }
+
+        // Initialize matrix effects
+        generateMatrixCode();
+
+        // Add random matrix particles
+        setInterval(() => {
+            const particle = document.createElement('div');
+            particle.className = 'salt-particle';
+            particle.style.position = 'fixed';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = '-20px';
+            particle.textContent = Math.random() < 0.5 ? '1' : '0';
+            particle.style.color = '#00ff41';
+            particle.style.fontSize = '12px';
+            particle.style.zIndex = '1';
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 4000);
+        }, 3000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9666aec624799862',t:'MTc1MzcyOTg5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
